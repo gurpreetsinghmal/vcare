@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('data',[ApiController::class,'getuser']);
+Route::get('updatetoken',[ApiController::class,'updatetoken']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

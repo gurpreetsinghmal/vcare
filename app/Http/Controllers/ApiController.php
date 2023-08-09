@@ -8,19 +8,45 @@ use App\Models\User;
 
 class ApiController extends Controller
 {
-    public function getuser(Request $request){
-    
-        if($request["access_token"])
-        {
-            $mobile=$request["access_token"];
-            $mobile=substr($mobile,4);
-            $u=User::where("mobile","=",$mobile)->get();
-            $data=$u;
-            dd($u);
+    public function getuser(Request $request)
+    {
+
+        if ($request["access_token"]) {
+
+            $token = trim($request["access_token"]);
+            $user = User::where('access_token', $token)->first();
+            if ($user) {
+                // You can return a Blade view with user information
+                $data = $user;
+            } else {
+                // Handle user not found
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+        } else {
+            $data = array("code" => 999, "msg" => "Invalid Request");
         }
-        else{
-            $data=array("code"=>999,"msg"=>"No user Found");
+        return response()->json($data);
+    }
+
+    public function updatetoken(Request $request)
+    {
+
+        if ($request["mobile"] && $request["access_token"]) {
+            $mobileNumber = $request->input("mobile");
+            $mobileNumber = trim(substr($mobileNumber, 2));
+            $user = User::where('mobile', $mobileNumber)->first();
+            if ($user) {
+                $user->access_token = trim($request["access_token"]);
+                $user->save();
+                return response()->json(["code" => 200, "msg" => "New Device Registered"]);
+            } 
+            else {
+                // Handle user not found
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+        } else {
+            $data = array("code" => 999, "msg" => "Invalid Request");
         }
-        return response()->json($data); 
+        return response()->json($data);
     }
 }
