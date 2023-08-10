@@ -14,10 +14,21 @@ class ApiController extends Controller
         if ($request["access_token"]) {
 
             $token = trim($request["access_token"]);
-            $user = User::where('access_token', $token)->first();
+            $user = User::where('access_token', $token)
+            ->select(
+                'id', 'name', 'mobile','role_id','district_id','block_id','village_id',)->first();
             if ($user) {
                 // You can return a Blade view with user information
-                $data = $user;
+                $data =[];
+                $data["id"]=$user->id;
+                $data["name"]=$user->name;
+                $data["mobile"]=$user->mobile;
+                $data["role"]=$user->role->description;
+                $data["district"]=$user->district->name;
+                $data["block"]=$user->block->name;
+                $data["village"]=$user->village->name;
+                $data["photo"]=$user->profile_photo_url;
+                return response()->json($data);
             } else {
                 // Handle user not found
                 $data = array("code" => 404, "msg" => "No User Found");
