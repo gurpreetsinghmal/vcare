@@ -60,4 +60,18 @@ class ApiController extends Controller
         }
         return response()->json($data);
     }
+
+    public function getuserbymobile(Request $request){
+        if ($request["mobile"]){
+            
+            $mob = trim($request["mobile"]);
+            $user = User::where('mobile', $mob)->first();
+            if ($user){
+                $data = array("code" => 200, "msg" => "User Found");
+            }else{
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+            return response()->json($data);
+        }
+    }
 }
