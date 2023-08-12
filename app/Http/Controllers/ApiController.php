@@ -41,11 +41,12 @@ class ApiController extends Controller
 
     public function updatetoken(Request $request)
     {
-
+        
         if ($request["mobile"] && $request["access_token"]) {
-            $mobileNumber = $request->input("mobile");
-            $mobileNumber = trim(substr($mobileNumber, 2));
+            $mobileNumber = $request["mobile"];
+            $mobileNumber = trim($mobileNumber);
             $user = User::where('mobile', $mobileNumber)->first();
+            
             if ($user) {
                 $user->access_token = trim($request["access_token"]);
                 $user->save();
@@ -61,7 +62,7 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getuserbymobile(Request $request){
+   public function getuserbymobile(Request $request){
         if ($request["mobile"]){
             
             $mob = trim($request["mobile"]);
@@ -71,7 +72,15 @@ class ApiController extends Controller
             }else{
                 $data = array("code" => 404, "msg" => "No User Found");
             }
-            return response()->json($data);
+            
+            
+           
         }
+        else
+        {
+             $data = array("code" => 500, "msg" => "Invalid Request");
+        }
+         return response()->json($data);
+        
     }
 }
