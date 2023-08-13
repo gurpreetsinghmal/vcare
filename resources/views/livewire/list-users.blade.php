@@ -3,7 +3,7 @@
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-            <div class="m-3 flex justify-between">
+             <div class="m-3 flex justify-between">
                 <div class="flex justify-between mb-4 w-96">
                     <input placeholder="Search with name or mobile or email" type="text" name="search" id="search" wire:model.debounce.500ms="search" class="rounded-lg px-2  py-2 w-full border">
                 </div>

@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('data',[ApiController::class,'getuser']);
+Route::get('getvillagelist',[ApiController::class,'getvillagelist']);
 Route::get('genotp',[ApiController::class,'getuserbymobile']);
 Route::post('updatetoken',[ApiController::class,'updatetoken']);
+Route::get('addpatient',[ApiController::class,'addpatient']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

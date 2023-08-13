@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DBVMappings;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Village;
+
 
 class ApiController extends Controller
 {
@@ -25,7 +29,9 @@ class ApiController extends Controller
                 $data["mobile"]=$user->mobile;
                 $data["role"]=$user->role->description;
                 $data["district"]=$user->district->name;
+                $data["dist_code"]=$user->district_id;
                 $data["block"]=$user->block->name;
+                $data["block_code"]=$user->block_id;
                 $data["village"]=$user->village->name;
                 $data["photo"]=$user->profile_photo_url;
                 return response()->json($data);
@@ -39,6 +45,38 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
+    public function addpatient(Request $request)
+    {
+        if($request["access_token"]){
+            $u=new Patient();
+            $u->name=$request["name"]; 
+            $u->husbandName=$request["husbandName"]; 
+            $u->village=$request["village"]; 
+            $u->mobile=$request["mobile"]; 
+            $u->currDeliveryCount=$request["currDeliveryCount"]; 
+            $u->prevChildAge=$request["prevChildAge"]; 
+            $u->previousDeliveryType=$request["previousDeliveryType"]; 
+            $u->sexPreviousChild=$request["sexPreviousChild"]; 
+            $u->tt1Switch=$request["tt1Switch"]; 
+            $u->tt2Switch=$request["tt2Switch"]; 
+            $u->ttbswitch=$request["ttbswitch"]; 
+            $u->counsDiet=$request["counsDiet"]; 
+            $asha=User::where('access_token',$request["access_token"])->first();
+            $u->user_id=$asha->id;
+            if($u->save()){
+                return response()->json(["code" => 200, "msg" => "New Record Saved"]);
+            } 
+            else {
+                // Handle user not found
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+        }
+        else {
+            $data = array("code" => 999, "msg" => "Invalid Request");
+        }
+        return response()->json($data);
+        
+    }
     public function updatetoken(Request $request)
     {
         
@@ -71,10 +109,7 @@ class ApiController extends Controller
                 $data = array("code" => 200, "msg" => "User Found");
             }else{
                 $data = array("code" => 404, "msg" => "No User Found");
-            }
-            
-            
-           
+            }   
         }
         else
         {
@@ -82,5 +117,16 @@ class ApiController extends Controller
         }
          return response()->json($data);
         
+    }
+
+    public function getvillagelist(Request $request){
+        $district=$request["district"];
+        $block=$request["block"];
+        $vill=[];
+        $user = DBVMappings::where('district_id',$district)->where('block_id',$block)->get();
+        foreach($user as $r){
+            $vill[$r->village_id]=$r->village->name;
+        }
+        return response()->json($user);
     }
 }
