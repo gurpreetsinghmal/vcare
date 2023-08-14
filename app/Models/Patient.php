@@ -11,14 +11,14 @@ class Patient extends Model
     protected $fillable = [
         'name',
         'husbandName',
-        'village',
+        'village_id',
         'mobile',
         'currDeliveryCount',
         'prevChildAge',
         'previousDeliveryType',
         'sexPreviousChild',
-        'tt1Switch',
-        'tt2Switch',
+        'tt1switch',
+        'tt2switch',
         'ttbswitch',
         'counsDiet',
         'user_id',
@@ -27,5 +27,10 @@ class Patient extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
     }
 }

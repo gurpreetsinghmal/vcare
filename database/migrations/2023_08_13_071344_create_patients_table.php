@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('husbandName')->nullable();
-            $table->string('village')->nullable();
+            $table->foreignId('village_id')->constrained('villages');
             $table->string('mobile')->nullable();
             $table->string('currDeliveryCount')->nullable();
             $table->string('prevChildAge')->nullable();
             $table->string('previousDeliveryType')->nullable();
             $table->string('sexPreviousChild')->nullable();
-            $table->string('tt1Switch')->nullable();
-            $table->string('tt2Switch')->nullable();
+            $table->string('tt1switch')->nullable();
+            $table->string('tt2switch')->nullable();
             $table->string('ttbswitch')->nullable();
             $table->string('counsDiet')->nullable();
             $table->foreignId('user_id')->constrained('users');

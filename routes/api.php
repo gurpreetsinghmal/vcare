@@ -20,6 +20,8 @@ Route::get('getvillagelist',[ApiController::class,'getvillagelist']);
 Route::get('genotp',[ApiController::class,'getuserbymobile']);
 Route::post('updatetoken',[ApiController::class,'updatetoken']);
 Route::get('addpatient',[ApiController::class,'addpatient']);
+Route::get('searchpatient',[ApiController::class,'searchpatient']);
+Route::get('updatepatient',[ApiController::class,'updatepatient']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
