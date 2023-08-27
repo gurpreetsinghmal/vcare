@@ -21,10 +21,7 @@ return new class extends Migration
             $table->string('access_token')->nullable();;
             $table->rememberToken();
             $table->foreignId('role_id')->nullable()->constrained('roles');
-            $table->foreignId('district_id')->nullable()->constrained('districts');
-            $table->foreignId('block_id')->nullable()->constrained('blocks');
-            $table->foreignId('village_id')->nullable()->constrained('villages');
-            $table->foreignId('current_team_id')->nullable();
+            
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });

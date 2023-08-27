@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('data',[ApiController::class,'getuser']);
+Route::get('getAshaProfile',[ApiController::class,'getAshaProfile']);
+Route::get('getAnmProfile',[ApiController::class,'getAnmProfile']);
 Route::get('getvillagelist',[ApiController::class,'getvillagelist']);
 Route::get('genotp',[ApiController::class,'getuserbymobile']);
 Route::post('updatetoken',[ApiController::class,'updatetoken']);
-Route::get('addpatient',[ApiController::class,'addpatient']);
-Route::get('searchpatient',[ApiController::class,'searchpatient']);
-Route::get('updatepatient',[ApiController::class,'updatepatient']);
+Route::post('addpatient',[ApiController::class,'addpatient']);
+Route::post('searchpatient',[ApiController::class,'searchpatient']);
+Route::post('updatepatient',[ApiController::class,'updatepatient']);
+Route::get('anmupdatepatient',[ApiController::class,'anmupdatepatient']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

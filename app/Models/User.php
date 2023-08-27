@@ -35,9 +35,6 @@ class User extends Authenticatable
         'mobile',
         'access_token',
         'role_id',
-        'district_id',
-        'block_id',
-        'village_id',
     ];
 
     /**
@@ -74,22 +71,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function block()
-    {
-        return $this->belongsTo(Block::class);
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Village::class);
-    }
-
-
 
 }
