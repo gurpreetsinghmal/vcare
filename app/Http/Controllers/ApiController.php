@@ -369,7 +369,7 @@ class ApiController extends Controller
             if (count($user)) {
                 $data = array("code" => 200, "msg" => "User Found", "patient" => $user);
             } else {
-                $data = array("code" => 404, "msg" => "No User Found");
+                $data = array("code" => 404, "msg" => "No Patient Found");
             }
         } else {
             $data = array("code" => 500, "msg" => "Invalid Request");
