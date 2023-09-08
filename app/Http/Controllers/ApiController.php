@@ -35,10 +35,10 @@ class ApiController extends Controller
                 $data["name"] = $user->name;
                 $data["mobile"] = $user->mobile;
                 $data["role"] = $user->role->description;
-                $data["district"] = $map->first()->district->name??"NA";
-                $data["dist_code"] = $map->first()->district->id??"NA";
-                $data["block"] = $map->first()->block->name??"NA";
-                $data["block_code"] = $map->first()->block->id??"NA";
+                $data["district"] = $map->first()->cmo->name??"NA";
+                $data["dist_code"] = $map->first()->cmo->id??"NA";
+                $data["block"] = $map->first()->smo->name??"NA";
+                $data["block_code"] = $map->first()->smo->id??"NA";
                 $v=[];
                 foreach ($map as $l) {
                     if($l->village)
