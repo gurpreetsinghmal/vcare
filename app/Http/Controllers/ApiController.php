@@ -255,7 +255,7 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function updatepatient(Request $request)
+    public function ashaupdatepatient(Request $request)
     {
         if ($request["access_token"]) {
             $u = Patient::find($request["id"]);
@@ -270,7 +270,7 @@ class ApiController extends Controller
             $u->counsDiet = $request["counsDiet"];
 
             $asha = User::where('access_token', $request["access_token"])->first();
-            $u->user_id = $asha->id;
+            $u->asha_id = $asha->id;
             if ($u->save()) {
                 return response()->json(["code" => 200, "msg" => "Record Updated"]);
             } else {
@@ -341,13 +341,13 @@ class ApiController extends Controller
                 // Handle user not found
                 $data = array("code" => 404, "msg" => "No User Found");
             }
-    } else {
-        $data = array("code" => 999, "msg" => "Invalid Request");
-    }
-    return response()->json($data);
+        } else {
+            $data = array("code" => 999, "msg" => "Invalid Request");
+        }
+        return response()->json($data);
     }
 
-    public function searchPatient(Request $request)
+    public function searchpatient(Request $request)
     {
         if ($request["mobile"] || $request["rchid"]) {
 
@@ -387,10 +387,10 @@ class ApiController extends Controller
             } else {
                 // Handle user not found
                 $data = array("code" => 404, "msg" => "No User Found");
+                    }
+            } else {
+                $data = array("code" => 999, "msg" => "Invalid Request");
             }
-    } else {
-        $data = array("code" => 999, "msg" => "Invalid Request");
-    }
-    return response()->json($data);
+            return response()->json($data);
     }
 }
