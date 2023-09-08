@@ -354,10 +354,10 @@ class ApiController extends Controller
             if ($request["mobile"]) {
                 $mob = trim($request["mobile"]);
                 $user = Patient::where('mobile', $mob)->get();
-                $vill=[];
+                $vill=[];$asha=[];
                 foreach($user as $r){
                     $vill[$r->village_id]=$r->village->name;
-                    
+                    $asha[$r->asha_id]=$r->asha->name;
                 }
             }
 
