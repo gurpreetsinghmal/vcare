@@ -3,7 +3,7 @@
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-             <div class="m-3 flex justify-between">
+            <div class="m-3 flex justify-between">
                 <div class="flex justify-between mb-4 w-96">
                     <input placeholder="Search with name or mobile or email" type="text" name="search" id="search" wire:model.debounce.500ms="search" class="rounded-lg px-2  py-2 w-full border">
                 </div>
@@ -33,6 +33,9 @@
                             District
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Block
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             email
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -53,7 +56,10 @@
                             {{ $user->mobile }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $user->district->name??"NA" }}
+                            {{ $dist[$user->id]??"NA" }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $block[$user->id]??"NA" }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->email??"NA" }}

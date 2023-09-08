@@ -32,8 +32,8 @@ class RegisterNewUser extends Component
     public $name = "";
     public $mobile = "";
     public $email = "";
-    public $password = "";
-    public $password_confirmation = "";
+    public $password = "12345678";
+    public $password_confirmation = "12345678";
     public $role = "";
     public $district = "";
     public $message = "";
@@ -66,7 +66,7 @@ class RegisterNewUser extends Component
             $userdistrict = Auth::user()->district_id;
             $this->user["district_id"] = $userdistrict;
             $this->user["block_id"] = Auth::user()->block_id;
-            $this->role_options = Role::whereIn('id', [2, 3, 4])->get();
+            $this->role_options = Role::whereIn('id', [1,2, 3, 4])->get();
         }
         else if ($userrole == 2) {
             //if smo create any user below him
@@ -103,7 +103,7 @@ class RegisterNewUser extends Component
                 'name' => 'required|string|max:255',
                 'mobile' => 'required|string|min:10|max:10|unique:users',
                 'email' => 'nullable|string|email|max:255',
-                'password' => 'required|string|min:8|confirmed',
+                // 'password' => 'required|string|min:8|confirmed',
                 'district_id' => 'required',
                 'role_id' => 'required',
             ],
@@ -117,15 +117,17 @@ class RegisterNewUser extends Component
                 // Add more custom messages for other rules as needed.
             ]
         )->validate();
-        if($this->user['role_id']==1 && ($this->user['village_id']==null || $this->user['village_id']=="")){
-            $this->message="Selection of Village is mandatory";
-            return;
-        }else
-        {
-            $this->message="";
-        }
+        
+        // if($this->user['role_id']==1 && ($this->user['village_id']==null || $this->user['village_id']=="")){
+        //     $this->message="Selection of Village is mandatory";
+        //     return;
+        // }else
+        // {
+        //     $this->message="";
+        // }
                       
-        $this->user['password'] = Hash::make($this->user['password']);
+        // $this->user['password'] = Hash::make($this->user['password']);
+        $this->user['password'] = Hash::make('12345678');
 
         $user = User::create($this->user);
         if ($user) {

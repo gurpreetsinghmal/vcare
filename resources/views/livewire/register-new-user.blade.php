@@ -29,7 +29,7 @@
 
         <div class="mb-4">
             <label for="password" class="block font-medium mb-2">Password</label>
-            <input value="{{ old('password') }}" type="password" wire:model="user.password" id="password" class="w-full border rounded-lg px-3 py-2">
+            <input value="12345678" readonly type="password" wire:model="user.password" id="password" class="w-full border rounded-lg px-3 py-2">
             @error('password')
             <span class="text-red-600">{{ $message }}</span>
             @enderror
@@ -37,7 +37,7 @@
 
         <div class="mb-4">
             <label for="password_confirmation" class="block font-medium mb-2">Confirm Password</label>
-            <input value="{{ old('password_confirmation') }}" type="password" wire:model="user.password_confirmation" id="password_confirmation" class="w-full border rounded-lg px-3 py-2">
+            <input value="12345678" readonly  type="password" wire:model="user.password_confirmation" id="password_confirmation" class="w-full border rounded-lg px-3 py-2">
         </div>
         <div class="mb-4">
             <label for="name" class="block font-medium mb-2">District</label>
@@ -51,7 +51,9 @@
                 @endforeach
             </select>
             @endif
-            @if (Auth::user()->role_id<7) <span class="font-extrabold text-lg">{{Auth::user()->district->name}}</span>
+            @if (Auth::user()->role_id<7) <span class="font-extrabold text-lg">
+                {{Auth::user()->name}}
+                </span>
                 @endif
                 @error('district_id')
                 <span class="text-red-600">{{ $message }}</span>
