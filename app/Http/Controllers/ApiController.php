@@ -35,10 +35,11 @@ class ApiController extends Controller
                 $data["name"] = $user->name;
                 $data["mobile"] = $user->mobile;
                 $data["role"] = $user->role->description;
-                $data["district"] = $map->first()->cmo->name??"NA";
-                $data["dist_code"] = $map->first()->cmo->id??"NA";
-                $data["block"] = $map->first()->smo->name??"NA";
-                $data["block_code"] = $map->first()->smo->id??"NA";
+                $v=DBVMappings::where('village_id',$map[0]->village_id)->first();
+                $data["dist_name"] = $v->district->name??"NA";
+                $data["dist_code"] = $v->district_id??"NA";
+                $data["block_name"] = $v->block->name??"NA";
+                $data["block_code"] = $v->block_id??"NA";
                 $v=[];
                 foreach ($map as $l) {
                     if($l->village)
@@ -80,10 +81,11 @@ class ApiController extends Controller
                 $data["name"] = $user->name;
                 $data["mobile"] = $user->mobile;
                 $data["role"] = $user->role->description;
-                $data["district"] = $map->first()->district->name??"NA";
-                $data["dist_code"] = $map->first()->district->id??"NA";
-                $data["block"] = $map->first()->block->name??"NA";
-                $data["block_code"] = $map->first()->block->id??"NA";
+                $v=DBVMappings::where('village_id',$map[0]->village_id)->first();
+                $data["dist_name"] = $v->district->name??"NA";
+                $data["dist_code"] = $v->district_id??"NA";
+                $data["block_name"] = $v->block->name??"NA";
+                $data["block_code"] = $v->block_id??"NA";
                 $v=[];
                 foreach ($map as $l) {
                     if($l->asha)
