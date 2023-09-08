@@ -374,4 +374,21 @@ class ApiController extends Controller
         }
         return response()->json($data);
     }
+    public function getUserRole(Request $request){
+        if ($request["access_token"]) {
+            $token = trim($request["access_token"]);
+            $user = User::where('access_token', $token)->first();
+            if ($user) {
+                $data["name"]=$user->name;                
+                $data["role_id"]=$user->role_id;                
+                return response()->json(["code" => 200, "user" => $data]);
+            } else {
+                // Handle user not found
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+    } else {
+        $data = array("code" => 999, "msg" => "Invalid Request");
+    }
+    return response()->json($data);
+    }
 }
