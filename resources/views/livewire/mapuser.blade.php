@@ -1,9 +1,9 @@
 <div>
-    <div class="bg-slate-500 text-white p-2">Map users</div>
+    <div class="bg-gray-500 text-white p-2">Map users</div>
     <div class="p-2">
-    <input type="text" class="my-1 rounded-md" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <input type="text" class="my-1 rounded-md mb-2" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         <table id="myTable" class="w-full">
-                <tr class="bg-slate-500 text-white">
+                <tr class="w-full text-sm text-left text-white bg-gray-500">
                     <th class="text-left">CMO</th>
                     <th class="text-left">SMO</th>
                     <th class="text-left">ANM</th>
@@ -11,7 +11,7 @@
                     <th class="text-left">VILLAGE</th>
                 </tr>
             @foreach($allmap as $map)
-            <tr class="hover:bg-slate-100">
+            <tr class="hover:bg-gray-100">
                 <td class="text-left py-2 ">{{$map->cmo->name??"NA"}}</td>
                 <td class="text-left py-2 ">{{$map->smo->name??"NA"}}</td>
                 <td class="text-left py-2 ">{{$map->anm->name??"NA"}}</td>
