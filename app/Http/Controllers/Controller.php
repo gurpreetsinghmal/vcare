@@ -9,4 +9,13 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    public function index(){
+        return view('dashboard');
+    }
+    public function mapping(){
+        return view('admin.map');
+    }
+    public function changepwd(){
+        return view('admin.changepwd');
+    } 
 }
