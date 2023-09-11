@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Village;
 
+use function PHPUnit\Framework\isEmpty;
 
 class ApiController extends Controller
 {
@@ -103,6 +104,55 @@ class ApiController extends Controller
             $data = array("code" => 999, "msg" => "Invalid Request");
         }
         return response()->json($data);
+    }
+
+    public function getGdmoProfile(Request $request)
+    {
+        if ($request["access_token"]) {
+
+            $token = trim($request["access_token"]);
+            $user = User::where('access_token', $token)
+                ->select(
+                    'id',
+                    'name',
+                    'mobile',
+                    'role_id',
+                )->first();
+            if ($user && $user->role_id==3) {
+                // You can return a Blade view with user information
+                $map=AllUserMapping::where('doctor_id',$user->id)->get();
+                
+                $data = [];
+                $data["id"] = $user->id;
+                $data["name"] = $user->name;
+                $data["mobile"] = $user->mobile;
+                $data["role"] = $user->role->description;
+                $v=[];
+                if($map->first())
+                $v=DBVMappings::where('village_id',$map->first()->village_id)->first();
+
+                $data["dist_name"] = $v->district->name??"NA";
+                $data["dist_code"] = $v->district_id??"NA";
+                $data["block_name"] = $v->block->name??"NA";
+                $data["block_code"] = $v->block_id??"NA";
+                $v=[];
+                foreach ($map as $l) {
+                    if($l->anm)
+                    $v[$l->anm->id]=$l->anm->name;
+                }
+                $data["anms"] =$v;
+                $data["smo"]=$map->first()->smo->name??"NA";
+                $data["photo"] = $user->profile_photo_url;
+                return response()->json($data);
+            } else {
+                // Handle user not found
+                $data = array("code" => 404, "msg" => "No User Found");
+            }
+        } else {
+            $data = array("code" => 999, "msg" => "Invalid Request");
+        }
+        return response()->json($data);
+
     }
     
     public function addpatient(Request $request)

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('getUserRole',[ApiController::class,'getUserRole']);
 Route::get('getAshaProfile',[ApiController::class,'getAshaProfile']);
 Route::get('getAnmProfile',[ApiController::class,'getAnmProfile']);
+Route::get('getGdmoProfile',[ApiController::class,'getGdmoProfile']);
 Route::get('getvillagelist',[ApiController::class,'getvillagelist']);
 Route::get('genotp',[ApiController::class,'getuserbymobile']);
 Route::post('updatetoken',[ApiController::class,'updatetoken']);
