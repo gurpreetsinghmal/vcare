@@ -1,4 +1,4 @@
- <div class="bg-pink-800 fixed w-full top-0">
+ <div class="bg-blue-500 fixed w-full top-0">
      <nav class="flex container mx-auto p-2 text-white items-center justify-between">
          <div>
              <a class=" flex items-center" href="/"><span><img class="w-12 rounded-full " src="{{asset('storage/images/wecare.png')}}" /></span>
