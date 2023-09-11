@@ -68,9 +68,11 @@ class ListUsers extends Component
             }
              if($u->role_id==3){
             $village=AllUserMapping::where("doctor_id",$u->id)->get('village_id')->first();
-            $map=DBVMappings::where("village_id",$village->village_id)->first();
+            if($village)
+            {$map=DBVMappings::where("village_id",$village->village_id)->first();
             $dist[$u->id]=$map->district->name;
             $block[$u->id]=$map->block->name;
+            }
             }
              if($u->role_id==2){
             $village=AllUserMapping::where("anm_id",$u->id)->get('village_id')->first();

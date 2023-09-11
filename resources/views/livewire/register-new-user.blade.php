@@ -52,7 +52,7 @@
             </select>
             @endif
             @if (Auth::user()->role_id<7) <span class="font-extrabold text-lg">
-                {{Auth::user()->name}}
+                {{Auth::user()->district->nam??""}}
                 </span>
                 @endif
                 @error('district_id')
@@ -72,7 +72,7 @@
             </select>
             @endif
             @if (Auth::user()->role_id<6 && Auth::user()->role_id>1)
-                <span class="font-extrabold text-lg">{{Auth::user()->block->name}}</span>
+                <span class="font-extrabold text-lg">{{Auth::user()->block->name??""}}</span>
                 @endif
 
                 @error('block_id')
