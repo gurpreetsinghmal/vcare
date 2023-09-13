@@ -50,21 +50,27 @@ class ListUsers extends Component
         foreach($this->users as $u){
             if($u->role_id==6){
             $village=AllUserMapping::where("cmo_id",$u->id)->get('village_id')->first();
+            if($village){
             $map=DBVMappings::where("village_id",$village->village_id)->first();
             $dist[$u->id]=$map->district->name;
             $block[$u->id]=$map->block->name;
+            }
             }
             if($u->role_id==5){
             $village=AllUserMapping::where("smo_id",$u->id)->get('village_id')->first();
+            if($village){ 
             $map=DBVMappings::where("village_id",$village->village_id)->first();
             $dist[$u->id]=$map->district->name;
             $block[$u->id]=$map->block->name;
             }
+            }
              if($u->role_id==4){
             $village=AllUserMapping::where("gyno_id",$u->id)->get('village_id')->first();
+            if($village){
             $map=DBVMappings::where("village_id",$village->village_id)->first();
             $dist[$u->id]=$map->district->name;
             $block[$u->id]=$map->block->name;
+            }
             }
              if($u->role_id==3){
             $village=AllUserMapping::where("doctor_id",$u->id)->get('village_id')->first();
