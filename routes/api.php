@@ -26,6 +26,7 @@ Route::post('addpatient',[ApiController::class,'addpatient']);
 Route::post('searchpatient',[ApiController::class,'searchpatient']);
 Route::post('ashaupdatepatient',[ApiController::class,'ashaupdatepatient']);
 Route::post('anmupdatepatient',[ApiController::class,'anmupdatepatient']);
+Route::post('gdmoupdatepatient',[ApiController::class,'gdmoupdatepatient']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
