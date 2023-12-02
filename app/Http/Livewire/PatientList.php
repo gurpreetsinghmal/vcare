@@ -41,7 +41,7 @@ class PatientList extends Component
         
             }
 
-            $allvillages=AllUserMapping::where("cmo_id",$u->id)->distinct()->pluck('village_id')->toArray();;
+            $allvillages=AllUserMapping::where("cmo_id",$u->id)->distinct()->pluck('village_id')->toArray();
             
             $this->patients=Patient::whereIn('village_id',$allvillages)->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
