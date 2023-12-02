@@ -64,7 +64,7 @@ class PatientList extends Component
             
             $this->patients=Patient::whereIn('village_id',$allvillages)->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
-                $query->orWhere('email', 'like', '%' . $this->search . '%');
+                $query->orWhere('husbandName', 'like', '%' . $this->search . '%');
                 $query->orWhere('mobile', 'like', '%' . $this->search . '%');
             })->orderby('id', 'desc')->get();
 
