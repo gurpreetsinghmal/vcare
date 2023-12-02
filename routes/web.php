@@ -27,4 +27,5 @@ Route::middleware([
     Route::get('/dashboard',[Controller::class,'index'])->name('dashboard');
     Route::get('/mapping',[Controller::class,'mapping'])->name('mapping');
     Route::get('/changepwd',[Controller::class,'changepwd'])->name('changepwd');
+    Route::get('/patientlist',[Controller::class,'patientlist'])->name('patientlist');
 });

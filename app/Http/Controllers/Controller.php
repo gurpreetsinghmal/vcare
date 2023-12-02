@@ -18,4 +18,7 @@ class Controller extends BaseController
     public function changepwd(){
         return view('admin.changepwd');
     } 
+    public function patientlist(){
+        return view('admin.patientlist');
+    }
 }

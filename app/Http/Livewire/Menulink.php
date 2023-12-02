@@ -65,7 +65,13 @@ class Menulink extends Component
         $anc4days = Carbon::now()->subMonth(8);
         $this->stat["anc4"]=Patient::whereIn('village_id', $vill)->where('Lmp','<', $anc4days)->whereNull('anc4_date')->count();
         $this->stat["delivered"]=Patient::whereIn('village_id', $vill)->whereNotNull('dateofdelivery')->count();
-        }
+        $this->stat["highrisk"]=Patient::whereIn('village_id', $vill)->where(function ($query) {
+            $query->where('anc1_highrisk', 1)
+                ->orWhere('anc2_highrisk', 1)
+                ->orWhere('anc3_highrisk', 1)
+                ->orWhere('anc4_highrisk', 1);
+        })->count();
+    }
 
          //cmo
          if(Auth::user()->role->id==6)
@@ -84,6 +90,7 @@ class Menulink extends Component
          $anc4days = Carbon::now()->subMonth(8);
          $this->stat["anc4"]=Patient::whereIn('village_id', $vill)->where('Lmp','<', $anc4days)->whereNull('anc4_date')->count();
          $this->stat["delivered"]=Patient::whereIn('village_id', $vill)->whereNotNull('dateofdelivery')->count();
+         $this->stat["highrisk"]=Patient::where('anc1_highrisk',1)->orWhere('anc2_highrisk',1)->orWhere('anc3_highrisk',1)->orWhere('anc4_highrisk',1)->count();
          }
     }
     public function render()
