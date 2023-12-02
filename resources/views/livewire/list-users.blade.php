@@ -69,7 +69,7 @@
                         </td>
                         <td class="px-3 py-4 text-right">
                             <x-button wire:click="changepwd({{$user->id}})">
-                                Change password
+                                Edit Details
                             </x-button>
 
                         </td>
@@ -94,6 +94,20 @@
             
             <form wire:submit.prevent="save">
                 @csrf
+                <div class="mb-4">
+                    <label for="password" class="block font-medium mb-2">Name</label>
+                    <input value="{{ old('name') }}" type="text" wire:model="userdata.name" id="name" class="w-full border rounded-lg px-3 py-2">
+                    @error('name')
+                    <span class="text-red-600">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block font-medium mb-2">Mobile</label>
+                    <input value="{{ old('mobile') }}" type="text" wire:model="userdata.mobile" id="mobile" class="w-full border rounded-lg px-3 py-2">
+                    @error('mobile')
+                    <span class="text-red-600">{{ $message }}</span>
+                    @enderror
+                </div>
                 <div class="mb-4">
                     <label for="password" class="block font-medium mb-2">Password</label>
                     <input value="{{ old('password') }}" type="password" wire:model="userdata.password" id="password" class="w-full border rounded-lg px-3 py-2">

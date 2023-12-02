@@ -13,12 +13,15 @@
                 </div>
                 @elseif(Auth::user()->role->id==6)
                 <span>Reporting Stats - District : {{$block->district->name}}</span>
-                <div class="grid grid-cols-2 gap-3 text-white mb-2">
+                <div class="grid grid-cols-3 gap-3 text-white mb-2">
                         <div class="bg-blue-400 p-3 rounded-lg h-16 flex justify-between">
                                 <span>Total Cases</span><span wire:click="report()" class="font-bold text-white cursor-pointer text-xl">{{$stat["total"]}}</span>
                         </div>
                         <div class="bg-green-400 p-3 rounded-lg h-16 flex justify-between">
                                 <span>Delivered Cases</span><span class="font-bold text-white text-xl">{{$stat["delivered"]}}</span>
+                        </div>
+                         <div class="bg-blue-400 p-3 rounded-lg h-16 flex justify-between">
+                                <span>High Risk Cases</span><span class="font-bold text-white text-xl">{{$stat["highrisk"]}}</span>
                         </div>
                 </div>
                 @endif
@@ -45,7 +48,7 @@
 
         <div class="mb-2 p-3 bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <a href="/mapping" class="bg-pink-800 p-2 text-white rounded-md">Mapping</a>
-                <a href="/changepwd" class="bg-pink-800 p-2  text-white rounded-md">Change Password</a>
+                <a href="/changepwd" class="bg-pink-800 p-2  text-white rounded-md">Edit User</a>
         </div>
         <x-confirmation-modal wire:model="reportmodal">
         <x-slot name="icon">
