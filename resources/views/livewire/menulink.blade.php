@@ -121,8 +121,8 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
+                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>
                                         @endforeach
@@ -170,7 +170,7 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>
@@ -219,7 +219,7 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>
@@ -268,7 +268,7 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>
@@ -317,7 +317,7 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>
@@ -366,7 +366,7 @@
                                                 <td class="py-2 px-4 border-b">{{$d->name}}<br />{{$d->husbandName}}</td>
                                                 <td class="py-2 px-4 border-b">{{$d->mobile}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getblock($d->village_id)}}<br />{{$d->village->name}}</td>
-                                                <td class="py-2 px-4 border-b">{{$this->getuser($d->anm_id)}}</td>
+                                                <td class="py-2 px-4 border-b">{{$this->getanm($d->village_id)}}</td>
                                                 <td class="py-2 px-4 border-b">{{$this->getuser($d->asha_id)}}</td>
 
                                         </tr>

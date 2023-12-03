@@ -40,14 +40,25 @@ class Menulink extends Component
 
     public function getuser($id)
     {
-        //dd($id);
-        return User::where('id', $id)->pluck('name')->first();
+       
+        $u=User::where('id', $id)->get(['name','mobile'])->first();
+        if($u){
+            return $u->name.' '.$u->mobile;
+        }
+        return "NA";
     }
     public function getblock($villageid)
     {
-        //dd($id);
+        
         $b = DBVMappings::where('village_id', $villageid)->first();
         return $b->block->name;
+    }
+    public function getanm($villageid)
+    {
+
+        $b = AllUserMapping::where('village_id', $villageid)->first();
+       
+        return $this->getuser($b->anm_id);
     }
 
     public function report_deliver()
